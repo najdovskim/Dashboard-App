@@ -11,7 +11,6 @@ function ProjectElement({ project, onClick, isSelected }) {
 
   const navigate = useNavigate();
 
-  // const randomColor = generateRandomColor();
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
   return (
     <MenuProvider>

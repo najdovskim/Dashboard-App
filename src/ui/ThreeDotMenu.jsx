@@ -1,7 +1,9 @@
 import { IoIosMore } from 'react-icons/io';
 import { useMenu } from '../hooks/useMenu';
+import useDeleteProject from '../features/sideBar/useDeleteProject';
 
 function ThreeDotMenu({ id }) {
+  const { isDeleting, deleteProject } = useDeleteProject();
   const { openMenuId, setOpenMenuId } = useMenu();
 
   const handleToggle = (e) => {
@@ -41,7 +43,7 @@ function ThreeDotMenu({ id }) {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Delete clicked');
+              deleteProject(id);
               setOpenMenuId(null);
             }}
             className="block w-full px-4 py-2 text-left text-red-500 hover:bg-red-100"
