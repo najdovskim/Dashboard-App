@@ -29,7 +29,7 @@ function ProjectElement({ project, onClick, isSelected }) {
         <div className={`mr-1.5 h-2 w-2 rounded-full ${randomColor}`}></div>
         <h2 className="text-base text-slate-800">{projectName}</h2>
         <span className="ml-auto mt-1">
-          <ThreeDotMenu id={id} />
+          <ThreeDotMenu type="project" id={id} />
         </span>
       </li>
     </MenuProvider>

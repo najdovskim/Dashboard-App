@@ -1,10 +1,12 @@
 import { IoIosMore } from 'react-icons/io';
 import { useMenu } from '../hooks/useMenu';
 import useDeleteProject from '../features/sideBar/useDeleteProject';
+import useDeleteTask from '../features/toDo/useDeleteTask';
 
-function ThreeDotMenu({ id }) {
-  const { isDeleting, deleteProject } = useDeleteProject();
+function ThreeDotMenu({ id, type }) {
   const { openMenuId, setOpenMenuId } = useMenu();
+  const { isDeleting: isDeletingProject, deleteProject } = useDeleteProject();
+  const { isDeleting: isDeletingTask, deleteTask } = useDeleteTask();
 
   const handleToggle = (e) => {
     e.stopPropagation();
@@ -16,6 +18,15 @@ function ThreeDotMenu({ id }) {
 
   const handleMenuClick = (e) => {
     e.stopPropagation();
+  };
+
+  const handleDelete = (e) => {
+    if (type === 'project') {
+      deleteProject(id);
+    } else if (type === 'element') {
+      deleteTask(id);
+    }
+    setOpenMenuId(null);
   };
 
   return (
@@ -43,7 +54,7 @@ function ThreeDotMenu({ id }) {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              deleteProject(id);
+              handleDelete(id);
               setOpenMenuId(null);
             }}
             className="block w-full px-4 py-2 text-left text-red-500 hover:bg-red-100"

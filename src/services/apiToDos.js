@@ -10,3 +10,14 @@ export async function getToDos() {
 
   return data;
 }
+
+export async function toDoListDelete(id) {
+  const { data, error } = await supabase.from('ToDoList').delete().eq('id', id);
+
+  if (error) {
+    console.error(error);
+    throw new Error('List could not be deleted');
+  }
+
+  return data;
+}
